@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "auto-image-report"
+version = "0.1.0"
+description = ""
+authors = ["scbmark <Twilight3847@skiff.com>"]
+readme = "README.md"
+packages = [{include = "auto_image_report"}]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.13"
+python-docx = "^0.8.11"
+pillow = "^10.0.0"
+pyqt6 = "^6.5.2"
+filetype = "^1.2.0"
+
+
+[tool.poetry.group.dev.dependencies]
+pyinstaller = "^5.13.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

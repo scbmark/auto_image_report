@@ -1,0 +1,8 @@
+.venv
+.vscode
+__pycache__
+example
+poetry.lock
+dist
+build
+*.spec
