@@ -2,7 +2,7 @@
 
 一個用來自動生成一頁二圖式的圖片報告的軟體。
 
-本專案開發主要基於 Python 3.10.11、 PyQt6 、 Pillow 和 python-docx。
+本專案開發主要基於 Python 3.10.11、 PySide6 、 Pillow 和 python-docx。
 
 ## 注意事項
 
@@ -12,9 +12,9 @@
 
 ### 執行檔
 
-支援 Windows_x64 及 Linux_x64 ，請至 [Release](https://github.com/scbmark/auto_image_report/releases) 下載，直接開啟使用。
+支援 Windows_x64 及 Linux_x64 ，請至 [Release](https://github.com/scbmark/auto_image_report/releases) 下載。
 
-編譯環境：於 Windows 11 x64 及 Arch Linux x64 的系統環境下，在 Poetry 建立的虛擬環境中用 Pyinstaller 編譯。
+編譯環境：於 Windows 11 x64 及 Arch Linux x64 的系統環境下，在 Poetry 建立的虛擬環境中用 Nuitka 編譯。
 
 ### 從原始碼執行
 
@@ -51,13 +51,15 @@ python ./auto_image_report.py
 
 ### 從原始碼編譯
 
-如上「[從原始碼執行](#從原始碼執行)」所述，安裝完虛擬環境及設定好模版文件後，使用 Pyinstaller 進行原始碼打包。
+如上「[從原始碼執行](#從原始碼執行)」所述，安裝完虛擬環境及設定好模版文件後，使用 Nuitka 進行原始碼打包。
 
 ```bash
-pyinstaller --onefile --noconsole --icon=./statics/icon.ico auto_image_report.py
-```
+# Linux
+python -m nuitka --standalone --enable-plugin=pyside6 --include-data-dir=./.venv/lib/python3.10/site-packages/docx/templates=docx/templates --follow-imports --static-libpython=no auto_image_report.py
 
-編譯完成後執行檔位於專案根目錄的 dist 資料夾中。
+# Windows
+python -m nuitka --standalone --enable-plugin=pyside6 --include-data-dir=./.venv/lib/python3.10/site-packages/docx/templates=docx/templates --follow-imports --static-libpython=no auto_image_report.py
+```
 
 ## Docx 模版文件說明
 

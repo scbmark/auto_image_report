@@ -7,16 +7,15 @@ readme = "README.md"
 packages = [{include = "auto_image_report"}]
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.13"
+python = ">=3.10,<3.12"
 python-docx = "^0.8.11"
 pillow = "^10.0.0"
-pyqt6 = "^6.5.2"
 filetype = "^1.2.0"
+pyside6 = "^6.5.2"
 
 
 [tool.poetry.group.dev.dependencies]
-pyinstaller = "^5.13.0"
-
+nuitka = "^1.7.10"
 
 [build-system]
 requires = ["poetry-core"]

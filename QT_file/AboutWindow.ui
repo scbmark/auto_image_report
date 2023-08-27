@@ -17,7 +17,7 @@
    <string>關於 Auto Image Report</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../resources.qrc">
+   <iconset resource="../resources_rc.qrc">
     <normaloff>:/statics/icon.ico</normaloff>:/statics/icon.ico</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -43,7 +43,7 @@
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap resource="../resources.qrc">:/statics/icon.ico</pixmap>
+          <pixmap resource="../resources_rc.qrc">:/statics/icon.ico</pixmap>
          </property>
         </widget>
        </item>
@@ -67,7 +67,7 @@
          <item>
           <widget class="QLabel" name="version_lb">
            <property name="text">
-            <string>Version: 2.0.0</string>
+            <string>Version: 2.1</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -116,7 +116,7 @@
               </font>
              </property>
              <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;開發：此程式以 &lt;a href=&quot;https://www.python.org/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#1d99f3;&quot;&gt;Python 3.10.11&lt;/span&gt;&lt;/a&gt; 開發，圖形介面基於 &lt;a href=&quot;https://www.riverbankcomputing.com/software/pyqt/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#1d99f3;&quot;&gt;PyQt6 &lt;/span&gt;&lt;/a&gt;，docx 檔案操作基於 &lt;a href=&quot;https://github.com/python-openxml/python-docx&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#1d99f3;&quot;&gt;python-docx&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;開發：此程式以 &lt;a href=&quot;https://www.python.org/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#1d99f3;&quot;&gt;Python 3.10.11&lt;/span&gt;&lt;/a&gt; 開發，圖形介面基於 &lt;a href=&quot;https://doc.qt.io/qtforpython-6/index.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#1d99f3;&quot;&gt;PySide6&lt;/span&gt;&lt;/a&gt;&lt;a href=&quot;https://www.riverbankcomputing.com/software/pyqt/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#1d99f3;&quot;/&gt;&lt;/a&gt;，docx 檔案操作基於 &lt;a href=&quot;https://github.com/python-openxml/python-docx&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#1d99f3;&quot;&gt;python-docx&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="textFormat">
               <enum>Qt::MarkdownText</enum>
@@ -244,6 +244,7 @@
   </layout>
  </widget>
  <resources>
+  <include location="../resources_rc.qrc"/>
   <include location="../resources.qrc"/>
  </resources>
  <connections/>

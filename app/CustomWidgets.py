@@ -1,9 +1,10 @@
 import os
+from pathlib import Path
 
 import filetype
 from PIL import Image
-from PyQt6 import QtCore, QtGui, QtWidgets
-from PyQt6.QtCore import QThread, pyqtSignal
+from PySide6 import QtCore, QtGui, QtWidgets
+from PySide6.QtCore import QThread, Signal
 
 
 class DropListWidget(QtWidgets.QListWidget):
@@ -21,7 +22,7 @@ class DropListWidget(QtWidgets.QListWidget):
         send_new_item -> list[str]: Sending the input images's path
     """
 
-    send_new_item = QtCore.pyqtSignal(list)
+    send_new_item = QtCore.Signal(list)
 
     def __init__(self, parent):
         super().__init__(parent)
@@ -80,7 +81,7 @@ class DropListWidget(QtWidgets.QListWidget):
             for url in event.mimeData().urls():
                 if url.isLocalFile():
                     link = url.toLocalFile()
-                    if os.path.isdir(link):
+                    if Path(link).is_dir():
                         messabebox = QtWidgets.QMessageBox(self)
                         messabebox.warning(self, "Error", "不支援資料夾")
                     else:
@@ -123,8 +124,8 @@ class LoadImage(QThread):
         send_img_item -> tuple(img: QPixmap, picture: str): Send the tuple that contains image instance and image path
     """
 
-    send_img_item = pyqtSignal(tuple)
-    send_progress = pyqtSignal(str)
+    send_img_item = Signal(tuple)
+    send_progress = Signal(str)
 
     def __init__(self, picture_list: list[str]):
         self.picture_list = picture_list

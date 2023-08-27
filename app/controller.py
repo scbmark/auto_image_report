@@ -1,8 +1,7 @@
 import json
-import os
 import shutil
 import sys
-from glob import glob
+from pathlib import Path
 from urllib import request
 
 import filetype
@@ -12,11 +11,11 @@ from docx.oxml.ns import qn
 from docx.oxml.shared import OxmlElement
 from docx.shared import Cm, Pt
 from PIL import Image
-from PyQt6 import QtGui, QtWidgets
-from PyQt6.QtCore import Qt, pyqtSignal
-from PyQt6.QtWidgets import QMessageBox
+from PySide6 import QtGui, QtWidgets
+from PySide6.QtCore import Qt, Signal
+from PySide6.QtWidgets import QMessageBox
 
-import resources
+import resources_rc
 
 from .AboutUI import Ui_AboutWindow
 from .CheckUI import Ui_CheckWindows
@@ -26,7 +25,7 @@ from .ManualUI import Ui_ManualWindow
 
 
 class MainWindow_controller(QtWidgets.QMainWindow):
-    send_update_image_count = pyqtSignal()
+    send_update_image_count = Signal()
 
     def __init__(self):
         super().__init__()
@@ -34,7 +33,7 @@ class MainWindow_controller(QtWidgets.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        self.version = "2.0.0"
+        self.version = "2.1"
 
         self.show_usage_warrning_window()
 
@@ -218,19 +217,22 @@ class MainWindow_controller(QtWidgets.QMainWindow):
         invalid_links: list[str] = list()
 
         support_format = ["jpg", "png", "bmp", "tif"]
-        all_file.extend(glob(os.path.join(dir_path, "*")))
+
+        path = Path(dir_path)
+        all_file.extend(path.glob("*"))
 
         for file in all_file:
-            if os.path.isdir(file):
+            if Path(file).is_dir():
                 continue
 
             file_format = filetype.guess(file)
+            file_name = str(file)
             if file_format is None:
-                invalid_links.append(file)
+                invalid_links.append(file_name)
             elif file_format.extension in support_format:
-                pictures.append(file)
+                pictures.append(file_name)
             else:
-                invalid_links.append(file)
+                invalid_links.append(file_name)
 
         return sorted(pictures), invalid_links
 
@@ -293,7 +295,7 @@ class MainWindow_controller(QtWidgets.QMainWindow):
         item_widget = QtWidgets.QWidget()
 
         pic_name_lb = QtWidgets.QLabel()
-        pic_name_lb.setText(os.path.basename(item_tuple[1]))
+        pic_name_lb.setText(Path(item_tuple[1]).name)
         item_layout = QtWidgets.QHBoxLayout()
 
         pic_view = QtWidgets.QGraphicsView(self)
@@ -329,7 +331,7 @@ class MainWindow_controller(QtWidgets.QMainWindow):
         item_widget = QtWidgets.QWidget()
 
         pic_name_lb = QtWidgets.QLabel()
-        pic_name_lb.setText(os.path.basename(path))
+        pic_name_lb.setText(Path(path).name)
         item_layout = QtWidgets.QHBoxLayout()
 
         delete_button = QtWidgets.QPushButton("")
@@ -352,9 +354,8 @@ class MainWindow_controller(QtWidgets.QMainWindow):
         """
         get the QListWidgetItem and remove it from QListWidget
         """
-        sender = self.sender()
-        index = sender.parent().parent().parent().row(item)
-        sender.parent().parent().parent().takeItem(index)
+        index = self.ui.items_list.row(item)
+        self.ui.items_list.takeItem(index)
         self.send_update_image_count.emit()
 
     def clear_list(self):
@@ -396,7 +397,7 @@ class MainWindow_controller(QtWidgets.QMainWindow):
         )
 
         self.img_widget.setGeometry(0, 0, int(img.width()), int(img.height()))
-        self.img_widget.setWindowTitle(f"{os.path.basename(item.text)}")
+        self.img_widget.setWindowTitle(f"{Path(item.text).name}")
         self.img_widget.setPixmap(img)
         self.img_widget.show()
 
@@ -500,13 +501,14 @@ class MainWindow_controller(QtWidgets.QMainWindow):
                 self, "Success", f"報告匯出成功\n插入了 {len(picture_list)} 張圖片"
             )
 
-            compress_path = os.path.join(configs["path"], "compressed")
-            if os.path.exists(compress_path):
+            compress_path = Path().joinpath(configs["path"], "compressed")
+            if compress_path.exists():
                 shutil.rmtree(compress_path)
 
             self.CheckWindows.close()
         except:
-            if os.path.exists(compress_path):
+            compress_path = Path().joinpath(configs["path"], "compressed")
+            if compress_path.exists():
                 shutil.rmtree(compress_path)
 
             messabebox = QMessageBox(self)
@@ -554,13 +556,13 @@ class MainWindow_controller(QtWidgets.QMainWindow):
         """
         load and compress the image in the filename list
         """
-        compress_path = os.path.join(root_path, "compressed")
+        compress_path = Path().joinpath(root_path, "compressed")
 
-        if not os.path.exists(compress_path):
-            os.mkdir(compress_path)
+        if not compress_path.exists():
+            compress_path.mkdir()
         else:
             shutil.rmtree(compress_path)
-            os.mkdir(compress_path)
+            compress_path.mkdir()
 
         self.progress_value = 0
         self.check_ui.progressBar.setRange(0, len(filename_list))
@@ -572,8 +574,8 @@ class MainWindow_controller(QtWidgets.QMainWindow):
             )
             self.check_ui.current_progress_lb.repaint()
 
-            base_name = os.path.basename(file)
-            compressed_img_filename = os.path.join(compress_path, f"c-{base_name}")
+            base_name = Path(file).name
+            compressed_img_filename = str(Path().joinpath(compress_path, f"c-{base_name}"))
 
             with Image.open(file) as img:
                 img.save(compressed_img_filename, format="JPEG", quality=80)
@@ -678,7 +680,7 @@ class MainWindow_controller(QtWidgets.QMainWindow):
         self.check_ui.current_progress_lb.setText("檔案正在匯出...")
         self.check_ui.progress_lb.repaint()
 
-        doc_path = os.path.join(path, f"{filename}.docx")
+        doc_path = str(Path().joinpath(path, f"{filename}.docx"))
         doc.save(doc_path)
 
         self.check_ui.current_progress_lb.setText("匯出完成")
