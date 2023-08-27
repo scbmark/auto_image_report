@@ -6,3 +6,4 @@ poetry.lock
 dist
 build
 *.spec
+output

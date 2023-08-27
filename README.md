@@ -14,7 +14,7 @@
 
 支援 Windows_x64 及 Linux_x64 ，請至 [Release](https://github.com/scbmark/auto_image_report/releases) 下載。
 
-編譯環境：於 Windows 11 x64 及 Arch Linux x64 的系統環境下，在 Poetry 建立的虛擬環境中用 Nuitka 編譯。
+編譯環境：於 Windows 11 22H2 x64 及 Arch Linux x64 的系統環境下，在 Poetry 建立的虛擬環境中用 Nuitka 編譯，C++ 編譯器為 gcc。
 
 ### 從原始碼執行
 
@@ -55,11 +55,15 @@ python ./auto_image_report.py
 
 ```bash
 # Linux
-python -m nuitka --standalone --enable-plugin=pyside6 --include-data-dir=./.venv/lib/python3.10/site-packages/docx/templates=docx/templates --follow-imports --static-libpython=no auto_image_report.py
+python -m nuitka --standalone --enable-plugin=pyside6 --include-data-dir=./.venv/lib/python3.10/site-packages/docx/templates=docx/templates --follow-imports --static-libpython=no --disable-console --output-dir=output auto_image_report.py
 
 # Windows
-python -m nuitka --standalone --enable-plugin=pyside6 --include-data-dir=./.venv/lib/python3.10/site-packages/docx/templates=docx/templates --follow-imports --static-libpython=no auto_image_report.py
+python -m nuitka --standalone --enable-plugin=pyside6 --include-data-dir=C:\Users\scbma\Downloads\code\.venv\Lib\site-packages\docx\templates=docx\templates --follow-imports --static-libpython=no --disable-console --windows-icon-from-ico=.\statics\icon.ico --output-dir=output auto_image_report.py
 ```
+
+執行 output/auto_image_report.dist 內的執行檔即可。
+
+專案內有提供 Windows 平臺 Inno Setup 6 的 compiler script ，可自行打包
 
 ## Docx 模版文件說明
 
