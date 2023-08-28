@@ -53,17 +53,31 @@ python ./auto_image_report.py
 
 如上「[從原始碼執行](#從原始碼執行)」所述，安裝完虛擬環境及設定好模版文件後，使用 Nuitka 進行原始碼打包。
 
+#### Linux
+
+首先要針對 python-docx 的路徑問題做修正，將 ```path = path.replace('parts/../', '')``` 寫入 python-docx 套件目錄中的 ```parts/hdrftr.py``` 中，最下面的 ```with open``` 的前一行。
+
 ```bash
 # Linux
-python -m nuitka --standalone --enable-plugin=pyside6 --include-data-dir=./.venv/lib/python3.10/site-packages/docx/templates=docx/templates --follow-imports --static-libpython=no --disable-console --output-dir=output auto_image_report.py
+## 安裝依賴
+sudo apt install patchelf   # Ubuntu
+sudo pacman -S patchelf # Arch Linux
 
+## 開始編譯
+python -m nuitka --standalone --static-libpython=no --enable-plugin=pyside6 --include-data-dir=./.venv/lib/python3.10/site-packages/docx/templates=docx/templates --follow-imports --include-package=certifi --disable-console --output-dir=output auto_image_report.py
+
+```
+
+#### Windows
+
+```bash
 # Windows
-python -m nuitka --standalone --enable-plugin=pyside6 --include-data-dir=C:\Users\scbma\Downloads\code\.venv\Lib\site-packages\docx\templates=docx\templates --follow-imports --static-libpython=no --disable-console --windows-icon-from-ico=.\statics\icon.ico --output-dir=output auto_image_report.py
+python -m nuitka --standalone --static-libpython=no --enable-plugin=pyside6 --include-data-dir=C:\Users\scbma\Downloads\code\.venv\Lib\site-packages\docx\templates=docx\templates --follow-imports --include-package=certifi --disable-console --windows-icon-from-ico=.\statics\icon.ico --output-dir=output auto_image_report.py
 ```
 
 執行 output/auto_image_report.dist 內的執行檔即可。
 
-專案內有提供 Windows 平臺 Inno Setup 6 的 compiler script ，可自行打包
+專案內有提供 Windows 平臺 Inno Setup 6 的 compiler script ，可自行打包。
 
 ## Docx 模版文件說明
 

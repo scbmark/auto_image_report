@@ -1,9 +1,11 @@
 import json
 import shutil
+import ssl
 import sys
 from pathlib import Path
 from urllib import request
 
+import certifi
 import filetype
 from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -33,7 +35,7 @@ class MainWindow_controller(QtWidgets.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        self.version = "2.1"
+        self.version = "2.2"
 
         self.show_usage_warrning_window()
 
@@ -112,13 +114,18 @@ class MainWindow_controller(QtWidgets.QMainWindow):
         self.ManualWindows.show()
 
     def check_update(self):
-        github_release_url: str = "https://github.com/scbmark/auto_image_report/releases/latest"
-        github_release_url_api: str = "https://api.github.com/repos/scbmark/auto_image_report/releases/latest"
+        github_release_url: str = (
+            "https://github.com/scbmark/auto_image_report/releases/latest"
+        )
+        github_release_url_api: str = (
+            "https://api.github.com/repos/scbmark/auto_image_report/releases/latest"
+        )
 
         req = request.Request(github_release_url_api)
 
         try:
-            with request.urlopen(req) as response:
+            context = ssl.create_default_context(cafile=certifi.where())
+            with request.urlopen(req, context=context) as response:
                 res = json.load(response)
                 latest_version = res["tag_name"]
         except:
@@ -575,7 +582,9 @@ class MainWindow_controller(QtWidgets.QMainWindow):
             self.check_ui.current_progress_lb.repaint()
 
             base_name = Path(file).name
-            compressed_img_filename = str(Path().joinpath(compress_path, f"c-{base_name}"))
+            compressed_img_filename = str(
+                Path().joinpath(compress_path, f"c-{base_name}")
+            )
 
             with Image.open(file) as img:
                 img.save(compressed_img_filename, format="JPEG", quality=80)

@@ -12,6 +12,7 @@ python-docx = "^0.8.11"
 pillow = "^10.0.0"
 filetype = "^1.2.0"
 pyside6 = "^6.5.2"
+certifi = "^2023.7.22"
 
 
 [tool.poetry.group.dev.dependencies]
