@@ -167,7 +167,7 @@ class Ui_AboutWindow(object):
             QCoreApplication.translate("AboutWindow", "Auto Image Report", None)
         )
         self.version_lb.setText(
-            QCoreApplication.translate("AboutWindow", "Version: 2.1", None)
+            QCoreApplication.translate("AboutWindow", "Version: ", None)
         )
         self.sofware_info_lb.setText(
             QCoreApplication.translate(
@@ -179,7 +179,7 @@ class Ui_AboutWindow(object):
         self.package_lb.setText(
             QCoreApplication.translate(
                 "AboutWindow",
-                '<html><head/><body><p>\u958b\u767c\uff1a\u6b64\u7a0b\u5f0f\u4ee5 <a href="https://www.python.org/"><span style=" text-decoration: underline; color:#1d99f3;">Python 3.10.11</span></a> \u958b\u767c\uff0c\u5716\u5f62\u4ecb\u9762\u57fa\u65bc <a href="https://doc.qt.io/qtforpython-6/index.html"><span style=" text-decoration: underline; color:#1d99f3;">PySide6</span></a><a href="https://www.riverbankcomputing.com/software/pyqt/"><span style=" text-decoration: underline; color:#1d99f3;"/></a>\uff0cdocx \u6a94\u6848\u64cd\u4f5c\u57fa\u65bc <a href="https://github.com/python-openxml/python-docx"><span style=" text-decoration: underline; color:#1d99f3;">python-docx</span></a></p></body></html>',
+                '<html><head/><body><p>\u958b\u767c\uff1a\u6b64\u7a0b\u5f0f\u4ee5 <a href="https://www.python.org/"><span style=" text-decoration: underline; color:#1d99f3;">Python 3.11.5</span></a> \u958b\u767c\uff0c\u5716\u5f62\u4ecb\u9762\u57fa\u65bc <a href="https://doc.qt.io/qtforpython-6/index.html"><span style=" text-decoration: underline; color:#1d99f3;">PySide6</span></a>\uff0cdocx \u6a94\u6848\u64cd\u4f5c\u57fa\u65bc <a href="https://github.com/python-openxml/python-docx"><span style=" text-decoration: underline; color:#1d99f3;">python-docx</span></a></p></body></html>',
                 None,
             )
         )

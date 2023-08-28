@@ -6,7 +6,10 @@
 
 ### Changed
 
+- Python 版本更新至 3.11.5 。
+- 關於頁面中的版本號碼改由變數控制。
 - 修改 Nuitka 的編譯指令。
+- Linux 的編譯平臺改為 Ubuntu 22.04 LTS
 
 ### Fixed
 

@@ -2,7 +2,7 @@
 
 一個用來自動生成一頁二圖式的圖片報告的軟體。
 
-本專案開發主要基於 Python 3.10.11、 PySide6 、 Pillow 和 python-docx。
+本專案開發主要基於 Python 3.11.5、 PySide6 、 Pillow 和 python-docx。
 
 ## 注意事項
 
@@ -14,7 +14,7 @@
 
 支援 Windows_x64 及 Linux_x64 ，請至 [Release](https://github.com/scbmark/auto_image_report/releases) 下載。
 
-編譯環境：於 Windows 11 22H2 x64 及 Arch Linux x64 的系統環境下，在 Poetry 建立的虛擬環境中用 Nuitka 編譯，C++ 編譯器為 gcc。
+編譯環境：於 Windows 11 22H2 x64 及 Ubuntu 22.04 x64 的系統環境下，在 Poetry 建立的虛擬環境中用 Nuitka 編譯，C++ 編譯器為 gcc。
 
 ### 從原始碼執行
 
@@ -64,7 +64,7 @@ sudo apt install patchelf   # Ubuntu
 sudo pacman -S patchelf # Arch Linux
 
 ## 開始編譯
-python -m nuitka --standalone --static-libpython=no --enable-plugin=pyside6 --include-data-dir=./.venv/lib/python3.10/site-packages/docx/templates=docx/templates --follow-imports --include-package=certifi --disable-console --output-dir=output auto_image_report.py
+python -m nuitka --standalone --static-libpython=no --enable-plugin=pyside6 --include-data-dir=./.venv/lib/python3.11/site-packages/docx/templates=docx/templates --follow-imports --include-package=certifi --disable-console --output-dir=output auto_image_report.py
 
 ```
 

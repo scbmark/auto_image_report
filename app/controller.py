@@ -159,6 +159,7 @@ class MainWindow_controller(QtWidgets.QMainWindow):
         self.AboutWindows = QtWidgets.QWidget()
         self.about_ui = Ui_AboutWindow()
         self.about_ui.setupUi(self.AboutWindows)
+        self.about_ui.version_lb.setText(f"Version: {self.version}")
         self.AboutWindows.setFixedSize(400, 600)
         self.about_ui.exit_btn.clicked.connect(lambda: self.AboutWindows.close())
         self.AboutWindows.show()
