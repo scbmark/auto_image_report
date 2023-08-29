@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Auto Image Report"
-#define MyAppVersion "2.1"
+#define MyAppVersion "2.2"
 #define MyAppPublisher "scbmark"
 #define MyAppURL "https://github.com/scbmark/auto_image_report"
 #define MyAppExeName "auto_image_report.exe"
@@ -20,12 +20,12 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
-LicenseFile=C:\Users\scbma\Downloads\auto_image_report\LICENSE
+LicenseFile=C:\Users\Administrator\Documents\code\auto_image_report\LICENSE
 ; Remove the following line to run in administrative install mode (install for all users.)
 PrivilegesRequired=lowest
-OutputDir=C:\Users\scbma\Downloads\auto_image_report\output
-OutputBaseFilename=Auto_Image_Report-2.1-Windows-amd64-installer
-SetupIconFile=C:\Users\scbma\Downloads\auto_image_report\statics\icon.ico
+OutputDir=C:\Users\Administrator\Documents\code\auto_image_report\output
+OutputBaseFilename=Auto_Image_Report-2.2-Windows-amd64-installer
+SetupIconFile=C:\Users\Administrator\Documents\code\auto_image_report\statics\icon.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -38,8 +38,8 @@ Name: "chinesetraditional"; MessagesFile: "compiler:Languages\ChineseTraditional
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\Users\scbma\Downloads\auto_image_report\output\auto_image_report.dist\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\scbma\Downloads\auto_image_report\output\auto_image_report.dist\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\Administrator\Documents\code\auto_image_report\output\auto_image_report.dist\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\Administrator\Documents\code\auto_image_report\output\auto_image_report.dist\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

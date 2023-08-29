@@ -72,7 +72,7 @@ python -m nuitka --standalone --static-libpython=no --enable-plugin=pyside6 --in
 
 ```bash
 # Windows
-python -m nuitka --standalone --static-libpython=no --enable-plugin=pyside6 --include-data-dir=C:\Users\scbma\Downloads\code\.venv\Lib\site-packages\docx\templates=docx\templates --follow-imports --include-package=certifi --disable-console --windows-icon-from-ico=.\statics\icon.ico --output-dir=output auto_image_report.py
+python -m nuitka --standalone --static-libpython=no --enable-plugin=pyside6 --include-data-dir=.\.venv\Lib\site-packages\docx\templates=docx\templates --follow-imports --include-package=certifi --disable-console --windows-icon-from-ico=.\statics\icon.ico --output-dir=output auto_image_report.py
 ```
 
 執行 output/auto_image_report.dist 內的執行檔即可。
