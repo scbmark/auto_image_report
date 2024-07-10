@@ -13,6 +13,7 @@ pillow = "^10.0.0"
 filetype = "^1.2.0"
 pyside6 = "^6.5.2"
 certifi = "^2023.7.22"
+pyqtdarktheme = "^2.1.0"
 
 
 [tool.poetry.group.dev.dependencies]
